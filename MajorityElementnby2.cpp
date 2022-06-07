@@ -39,7 +39,7 @@ int solveOptimal(int arr[], int n){
     for(int i=0; i<n; i++){
         if(count == 0)
             ele = arr[i];
-        if(ele == arr[i])
+        if(ele == arr[i]) //don't write else if here
             count++;
         else    
             count--;
@@ -51,7 +51,7 @@ int solveOptimal(int arr[], int n){
 
 
 int main(){
-    int arr[] = {3,2,3};
+    int arr[] = {1, 1, 2};
     int n = sizeof(arr)/sizeof(arr[0]);
     // int ans = solveBrute(arr, n);
     // int ans = solveBetter(arr, n);
