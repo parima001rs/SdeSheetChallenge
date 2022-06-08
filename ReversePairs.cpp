@@ -54,6 +54,43 @@ public:
     }
 };
 
+//LEETCODE SOLUTION
+class Solution {
+public:
+    int count = 0;
+    int reversePairs(vector<int>& nums) {
+        if(!nums.size()) return 0;
+        count = 0;
+        mergeSort(nums,0,nums.size()-1);
+        return count;
+    }
+    
+    void mergeSort(vector<int>& nums, int l, int r){
+        int mid = l + (r-l) /2;
+        if(l>=r) return;
+        
+            mergeSort(nums, l, mid);
+            mergeSort(nums, mid+1, r);
+            merge(nums, l, mid, r);
+            return;
+    }
+    
+    int merge(vector<int>& nums, int start, int mid, int end){
+        int l = start, r = mid +1;
+        while(l<=mid && r<=end){
+            if((long)nums[l] > (long)2* nums[r]){
+                count += (mid - l +1);
+                r++;
+            }
+            else{
+                l++;
+            }
+        }
+        sort(nums.begin()+ start, nums.begin()+end+1);
+        return count;
+    }
+};
+
 int main(){
     Solution obj;
     vector<int> v = {6, 4, 8, 2, 1, 3};
