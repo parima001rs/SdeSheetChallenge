@@ -25,7 +25,7 @@ class Solution {
     }
 
     //Hashing TC:O(3N) ~ O(N) & SC:O(N)
-    int solveOptimal(vector<int> &arr){
+    int solveOptimal(vector<int> &nums){
         set<int> hashSet;
         for(int num: nums){
             hashSet.insert(num);

@@ -22,16 +22,48 @@ class Solution{
         return maxAns;
     }
 
-    //Optimised Approach TC:O() & SC:O()
+    //Optimised Approach TC:O(2*N) & SC:O(N)
     int solveBetter(string &str){
-        
+        int maxAns = INT_MIN;
+        unordered_set<int>set;
+        int l = 0;
+        for(int r=0; r<str.length(); r++){
+            if(set.find(str[r]) != set.end()){
+                while(l<r && set.find(str[r]) != set.end()){
+                    set.erase(str[l]);
+                    l++;
+                }
+            }
+            set.insert(str[r]);
+            maxAns = max(maxAns, r-l+1);
+        }
+        return maxAns;
+    }
+
+    //Optimal Approach TC:O(N) & SC:O(N)
+    int solveOptimal(string &str){
+        vector<int>mpp(256, -1);
+        int left = 0, right = 0;
+        int n = str.size();
+        int len = 0;
+        while(right < n){
+            if(mpp[str[right]] != -1)
+                left = max(mpp[str[right]] +1 , left);
+            
+            mpp[str[right]] = right;
+            len = max(len, right - left + 1);
+            right++;
+        }
+        return len;
     }
 };
 
 int main(){
     Solution obj;
     string str = "abcabcbb";
-    int ans = obj.solveBrute(str);
+    // int ans = obj.solveBrute(str);
+    // int ans = obj.solveBetter(str);
+    int ans = obj.solveOptimal(str);
     cout<<ans;
     return 0;
 }

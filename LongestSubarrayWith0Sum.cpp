@@ -17,7 +17,8 @@ class Solution{
         return maxStreak;
     }
 
-    //Hashmap Approach TC:O(NlogN) & SC:O(N)
+    //Hashmap Approach TC:O(NlogN) & SC:O(N) 
+    //prefix sum approach
     int solveOptimal(vector<int> &arr){
         int n = arr.size();
         unordered_map<int, int>m;
@@ -33,9 +34,9 @@ class Solution{
                 else{
                     m[sum] = i; 
                 }
-                return maxi;
             }
         }
+        return maxi;
     }
 };
 
