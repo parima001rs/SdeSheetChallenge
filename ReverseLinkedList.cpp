@@ -77,18 +77,43 @@ void deletion(node* head, int key){
     delete todelete;
 }
 
+//Iterative TC:O(N) & SC:O(1) where n is number of nodes
+node* reverseLL(node* &head){
+    node* dummy = NULL;
+    while(head != NULL) {
+        node* next = head->next;
+        head->next = dummy;
+
+        dummy = head;
+        head = next;
+    }
+    return dummy;
+}
+
+//Recursive TC:O(N) & SC:O(1)
+node* reverseRecursive(node* &head){
+    if(head == NULL || head->next == NULL){
+        return head;
+    }
+
+    node* newHead = reverseRecursive(head->next);
+    head->next->next = head;
+    head->next = NULL;
+
+    return newHead;
+}
+
 int main(){
     node* head = NULL;
     insertAtTail(head, 1);
     insertAtTail(head, 2);
     insertAtTail(head, 3);
-    // display(head);
-    insertAtHead(head, 0);
+    insertAtTail(head, 4);
+    insertAtTail(head, 5);
     display(head);
-    // cout<<search(head, 3);
-    // deletion(head, 3);
-    deleteAtHead(head);
-    display(head);
+
+    node* newHead = reverseRecursive(head);
+    display(newHead);
 
     return 0;
 }
