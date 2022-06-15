@@ -33,10 +33,23 @@ void display(node* head){
     cout<<"NULL"<<endl;
 }
 
+node* getNode(node* head, int val){
+    while(head->data != val){
+        head = head->next;
+    }
+    return head;
+}
+
+//Dumb solution TC:O(1) & SC:O(1)
+//1->4->2->3->NULL
+//let's say you need to delete node 2
+//we'll copy toDeleteNode->next to toDeleteNode
+//1->4->3-/>3->NULL
+//then point copied 3 to toDeleteNode->next->next
 void deleteNode(node* n){
-    node* temp = n->next;
-    *n = temp;
-    delete temp;
+    n->data = n->next->data; //It is guaranteed that the node to be deleted is not a tail node in the list.
+    n->next = n->next->next;
+    return;
 }
 
 int main(){
@@ -47,7 +60,8 @@ int main(){
     insertAtTail(head, 9);
     display(head);
 
-    deleteNode(5);
+    node* t = getNode(head, 5);
+    deleteNode(t);
     display(head);
     return 0;
 }
