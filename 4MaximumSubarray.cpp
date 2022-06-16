@@ -25,6 +25,16 @@ int solveKadane(vector<int> &v){
     return res;
 }
 
+//Kadane's algo for -ve numbers too
+int solveKadane2(vector<int> &v){
+    int sum = v[0], res = v[0];
+    for(int i=1; i<v.size(); i++){
+        sum = max(v[i], sum + v[i]);
+        res = max(res, sum);
+    }
+    return res;
+}
+
 //===============================================================//
 //ANOTHER APPROACHES
 
@@ -72,9 +82,11 @@ int solveRecursion(vector<int> &v){
 //Driver Code
 int main(){
     vector<int>v = {-2,1,-3,4,-1,2,1,-5,4};
-    // cout<<solveBrute(v);
+    cout<<solveBrute(v);
     // cout<<solveKadane(v);
     // cout<<solveDivideNConquer(v);
-    cout<<solveRecursion(v);
+    // cout<<solveRecursion(v);
     return 0;
 }
+
+// 62 97 0 -461 -125 -404 -59 -322 -495 -288 -341 -449 -313 -192 -214 -389 -202 -183 -72 -416 -455 -187 -242 -416 39 -198 -338 -465 -248 -25 -398 -97 -461 -214 -423 -407 -77 -190 -67 -178 -410 -160 72 -350 -31 -85 -247 -319 -462 -303 -48 -354 -110 17 60 19 80 -218 -28 -426 -366 -140 50

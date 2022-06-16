@@ -80,13 +80,13 @@ void setZeroesOptimal(vector<vector<int>> &matrix){
     bool col_0 = true;
     // TC:O(N*M)
     for(int i=0; i<rows; i++){
-            if(matrix[i][0] == 0) col_0 = false;
-            for(int j=1; j<cols; j++){
-                if(matrix[i][j] == 0){
-                    matrix[i][0] = matrix[0][j] = 0;
-                }
+        if(matrix[i][0] == 0) col_0 = false;
+        for(int j=1; j<cols; j++){
+            if(matrix[i][j] == 0){
+                matrix[i][0] = matrix[0][j] = 0;
             }
         }
+    }
         
     // TC:O(N*M)
     for(int i=rows-1; i>=0; i--){

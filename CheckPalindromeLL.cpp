@@ -42,6 +42,8 @@ node* listReverse(node* head){
     return dummy;
 }
 
+//Slow fast Approach TC:O(N/2) + O(N/2) + O(N/2) & SC:O(1)
+//O(N/2) for finding the middle element, reversing the list from the middle element, and traversing again to find palindrome respectively.
 bool isPalindrome(node* head){
     if(head==NULL || head->next==NULL) return true;
 
@@ -56,7 +58,7 @@ bool isPalindrome(node* head){
     slow->next = listReverse(slow->next);
     slow = slow->next;
 
-    while(slow != NULL){
+    while(slow != NULL){ //imp whle slow isn't null
         if(head->data != slow->data)
             return false;
         slow = slow->next;
