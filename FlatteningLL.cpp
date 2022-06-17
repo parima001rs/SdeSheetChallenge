@@ -6,9 +6,8 @@ class node{
     node* next;
     node* bottom;
     int data;
-    bool point = true;
 
-    node(int val, bool pointer){
+    node(int val){
         data = val;
         next = NULL;
         bottom = NULL;
@@ -51,6 +50,7 @@ node* mergeLL(node* a, node* b){
     return res->bottom;
 }
 
+//Recursion TC:O(N) & SC:O(1)
 node* flatten(node* root){
     if(!root || !root->next)
         return root;
