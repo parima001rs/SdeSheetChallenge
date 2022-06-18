@@ -12,7 +12,7 @@ bool comp(Job a, Job b){
 }
 
 //TC:O(NlogN) + O(N*M) & SC:O(M)
-pair<int, int> JobScheduling(Job arr[], int n){
+vector<int> JobScheduling(Job arr[], int n){
     //sort acc. to profit
     sort(arr, arr+n, comp);
 
@@ -23,7 +23,7 @@ pair<int, int> JobScheduling(Job arr[], int n){
     }
 
     //make slot arr
-    int slot[maxi] = -1;
+    int slot[maxi];
     for(int i=0; i<=maxi; i++){
         slot[i] = -1;
     }
@@ -31,7 +31,7 @@ pair<int, int> JobScheduling(Job arr[], int n){
     //main kaam
     int countJobs = 0, jobProfit = 0;
     for(int i=0; i<n; i++){ //job id
-        for(int j=arr[i].dead; j>0; j--){
+        for(int j=arr[i].dead; j>0; j--){ //traversing slot from back
             if(slot[j] == -1){ //whichever day is empty
                 slot[j] = i;
                 countJobs++;
@@ -40,43 +40,17 @@ pair<int, int> JobScheduling(Job arr[], int n){
             }
         }
     }
-    return make_pair(countJobs, jobProfit);
+    vector<int>res = {countJobs, jobProfit};
+    return res;
 }
 
 int main(){
-    int t;
-    cin>>t;
-    while(t--){
-        int n;
-        cin>>n;
-        Job arr[n];
-        for(int i=0; i<n; i++){
-            int x, y, z;
-            cin>>x, y, z;
-            arr[i].id = x;
-            arr[i].dead = y;
-            arr[i].profit = z;
-        }
-        vector<int>ans = JobScheduling(arr, n);
-        cout<<ans[0]<<" "<<ans[1]<<endl;
-    }
+    int n = 4;
+    Job arr[n] = {{1,4,20}, {2, 1, 10}, {3, 2, 40}, {4, 2, 30}};
+    vector<int>ans = JobScheduling(arr, n);
+    cout<<ans[0]<<" "<<ans[1]<<endl;
+    
 
     return 0;
 }
-
-// SDE Sheet – 180 Questions and many concepts and algo
-// InterviewBit – Amazon Oriented – 205 questions
-// Top interview questions leetcode - 71
-// +114 = 500
-// stl in one video
-// Core subjects: OS, DBMS, OOPS, CN
-// Amazon Archives
-// Aptitude
-// LeaderShip Principles
-// mock interviews
-
-//July - Sde sheet
-//August - interview bit
-//September - interview bit + leetcode
-//October - archives
 
