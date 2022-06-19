@@ -3,7 +3,8 @@ using namespace std;
 
 // //for printing whole pascal triangle if number of rows is given
 // // TC: O(N^2) , SC:O(N^2) for storing soln
-vector<vector<int>> printPascalTriangle(int n){
+vector<vector<int>> printPascalTriangle(int n)
+{
     vector<vector<int>>v(n);
     for(int i=0; i<n; i++){
         v[i].resize(i+1); //increasing cols per row
@@ -16,26 +17,24 @@ vector<vector<int>> printPascalTriangle(int n){
 }
 
 //without resize function and printing in function only
-void printPascal(int n)
+vector<vector<int>> printPascal(int n)
 {
-	int arr[n][n];
-	for (int i = 0; i < n; i++){
-		for (int j = 0; j <= i; j++){
-            if (i == j || j == 0)
-                arr[i][j] = 1;
-            else
-                arr[i][j] = arr[i - 1][j - 1] + arr[i - 1][j];
-            cout << arr[i][j] << " ";
-        }
-            cout <<endl;
+	vector<vector<int>> res;
+	for (int i = 0; i < n; i++) {
+		vector<int> row(i + 1, 1);
+		for (int j = 1; j < i; j++) {
+			row[j] = res[i - 1][j] + res[i - 1][j - 1];
+		}
+		res.push_back(row);
 	}
+	return res;
 }
 
 
 int main(){
     int n;
     cin>>n;
-    // printPascal(n);// without resize() funcn
+    // auto ans = printPascal(n);// without resize() funcn
     auto ans = printPascalTriangle(n);
     for(int i=0; i<n; i++){
         for(int j=0; j<=i; j++){
@@ -47,8 +46,8 @@ int main(){
 }
 
 //=====================================================//
-// //for evaluating single element
-// //TC: O(N) & SC: O(1)
+//for evaluating single element
+//TC: O(N) & SC: O(1)
 int fact(int n){
     int res = 1;
     for(int i=2; i<=n; i++){
@@ -67,7 +66,7 @@ int main(){
 }
 
 
-//=====================================================//
+//=========================================================//
 //for calculating an row 
 int main(){
     int n; 
@@ -82,3 +81,4 @@ int main(){
     }
     return 0;
 }
+

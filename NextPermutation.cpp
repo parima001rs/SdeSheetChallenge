@@ -9,7 +9,7 @@ void permute(vector<int>&v, int ind, vector<vector<int>> &op){
         return;
     }
     for(int i=ind; i<v.size(); i++){
-        if(ind != i && v[ind] == v[i]){
+        if(ind != i && v[ind] == v[i]){ 
             continue;
         }
         swap(v[i], v[ind]);
