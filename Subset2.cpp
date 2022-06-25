@@ -43,29 +43,29 @@ class Solution {
 // O(2^n) for generating every subset and O(k) to insert
 // every subset in another data structure if the average 
 // length of every subset is k. Overall O(k * 2^n).
-// class Solution {
-//     private:
+class Solution {
+    private:
 
-//     void helper(vector<int>& nums, vector<int>& op, int ind, vector<vector<int>> &res){
-//         res.push_back(op);
-//         for(int i= ind; i< nums.size(); i++){
-//             if(i != ind && nums[i] == nums[i-1]) continue;
+    void helper(vector<int>& nums, vector<int>& op, int ind, vector<vector<int>> &res){
+        res.push_back(op);
+        for(int i= ind; i< nums.size(); i++){
+            if(i != ind && nums[i] == nums[i-1]) continue;
 
-//             op.push_back(nums[i]);
-//             helper(nums, op, i+1, res);
-//             op.pop_back();
-//         }
-//     }
+            op.push_back(nums[i]);
+            helper(nums, op, i+1, res);
+            op.pop_back();
+        }
+    }
 
-// public:
-//     vector<vector<int>> solveOptimal(vector<int> &nums){
-//         vector<vector<int>> res;
-//         vector<int> op;
-//         sort(nums.begin(), nums.end());
-//         helper(nums, op, 0, res);
-//         return res;
-//     }
-// };
+public:
+    vector<vector<int>> solveOptimal(vector<int> &nums){
+        vector<vector<int>> res;
+        vector<int> op;
+        sort(nums.begin(), nums.end());
+        helper(nums, op, 0, res);
+        return res;
+    }
+};
 
 
 
