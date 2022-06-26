@@ -4,28 +4,28 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> res;
-    void helper(vector<int>arr, int ind, int target, vector<int> op){
-        if(ind == arr.size()){
-            if(target == 0){
-                res.push_back(op);
-            }
+    void helper(vector<int>&arr, int ind, int target, vector<int>& op){
+        if(target == 0){
+            res.push_back(op);
             return;
-        }
+        }   
 
-        vector<int> op1 = op;
-        vector<int> op2 = op;
         for(int i=ind; i<arr.size(); i++){
             if(i != ind && arr[i] == arr[i-1]) continue;
             if(arr[ind] > target) break;
-            op1.push_back(arr[ind]);
-            helper(arr, ind+1, target- arr[ind], op1);
-            helper(arr, ind+1, target, op2);
+            op.push_back(arr[i]);
+            helper(arr, i+1, target- arr[i], op);
+            op.pop_back();
         }
         
     }
 
-    //Recursion TC:O(2^t * k) where t is the target, k is the avg length
-    // single element can be selected multiple time
+    //Recursion TC:O(2^n * k) 
+    //Assume if all the elements in the array are unique then the 
+    // no. of subsequence you will get will be O(2^n). 
+    // We also add the op to our res when we reach the base case that will take
+    // k = avg. space for the ds
+    // single element can be selected only once
     // SC: O(k * x) x = no. of the combinations
     vector<vector<int>> solve(vector<int>& arr, int target){
         sort(arr.begin(), arr.end());
